@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -24,3 +23,4 @@ async function main() {
 }
 
 module.exports = main;
+
