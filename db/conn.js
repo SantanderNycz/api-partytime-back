@@ -1,6 +1,6 @@
 // db/conn.js
-import mongoose from "mongoose";
-import 'dotenv/config';
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 mongoose.set("strictQuery", true);
 
@@ -14,7 +14,4 @@ async function connectDB() {
   }
 }
 
-export default connectDB;
-
-
-
+module.exports = connectDB;
