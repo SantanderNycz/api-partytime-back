@@ -1,26 +1,20 @@
-import dotenv from "dotenv";
+// db/conn.js
+import mongoose from "mongoose";
+import 'dotenv/config';
 
-dotenv.config();
+mongoose.set("strictQuery", true);
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("Conectado ao MongoDB"))
-  .catch((err) => console.log(err));
-
-const mongoose = require("mongoose");
-
-async function main() {
+async function connectDB() {
   try {
-    mongoose.set("strictQuery", true);
-
-    await mongoose.connect(
-      "mongodb+srv://santandernycz:S7TB8OUYUFGDN4Bm@cluster0.rvhc5n1.mongodb.net/?appName=Cluster0"
-    );
-    console.log("Database connected");
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB conectado com sucesso!");
   } catch (error) {
-    console.log(`Error ${error}`);
+    console.error("Erro ao conectar ao MongoDB:", error);
+    process.exit(1);
   }
 }
 
-module.exports = main;
+export default connectDB;
+
+
 
