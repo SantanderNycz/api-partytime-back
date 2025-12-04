@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 // Middleware para hash da senha antes de salvar
-userSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   // Gera hash da senha
@@ -39,15 +39,16 @@ userSchema.pre("save", async function (next) {
 });
 
 // método para comparar senhas
-userSchema.methods.comparePassword = async function (candidatePassword) {
+UserSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
 // método para retornar usuário sem dados sensíveis
-userSchema.methods.toJSON = function () {
+UserSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.password;
   return user;
 };
 
 module.exports = mongoose.model("User", UserSchema);
+
