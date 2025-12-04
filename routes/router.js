@@ -1,13 +1,13 @@
 const router = require("express").Router();
 
-// Services router
+// importar rotas
 const servicesRouter = require("./services");
-
-router.use("/", servicesRouter);
-
-// Parties routes
 const partyRouter = require("./parties");
+const authRouter = require("./auth");
 
+// usar rotas
+router.use("/", servicesRouter);
 router.use("/", partyRouter);
+router.use("/", authRouter);
 
 module.exports = router;
